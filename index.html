@@ -2,10 +2,10 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%92%3C/text%3E%3C/svg%3E">
 <meta name="theme-color" content="#060a11">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>GRUPO OKINAWATEC · Licitaciones con el Estado</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%94%92%3C/text%3E%3C/svg%3E">
+<title>GRUPO OKINAWATEC · Oportunidades en ciberseguridad y redes</title>
 <style>
 :root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
 --bg:#060a11;--card:rgba(12,22,36,.88);--tx:#d6e6f6;--mut:#7d92aa;--bd:#16304a;--ac:#00e5ff;--ac2:#22ff9a;--acs:rgba(0,229,255,.09);--ok:#22ff9a;--oks:rgba(34,255,154,.11);
@@ -60,6 +60,28 @@ tbody tr:hover td{background:rgba(0,229,255,.05)}
 .tag{display:inline-block;border:1px solid rgba(0,229,255,.4);color:var(--ac);background:var(--acs);border-radius:6px;padding:1px 8px;font:.72rem var(--mono);margin:2px 4px 0 0}
 .win{border-color:rgba(34,255,154,.5);background:var(--oks);color:var(--ok);box-shadow:0 0 10px rgba(34,255,154,.2)}
 [hidden]{display:none!important}
+.srch{display:flex;gap:10px;flex-wrap:wrap}.srch input{flex:1;min-width:220px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0 4px}
+.chp{border:1px solid var(--bd);background:rgba(8,18,30,.9);border-radius:999px;padding:6px 14px;font:600 .82rem var(--mono);letter-spacing:.04em;cursor:pointer;color:var(--tx)}
+.chp[aria-pressed=true]{border-color:var(--ac);color:#02131a;background:linear-gradient(135deg,#00e5ff,#22ff9a);box-shadow:0 0 14px rgba(0,229,255,.35)}
+.chp small{opacity:.75;margin-left:4px}
+.flt{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:8px}
+select{width:100%;padding:9px 11px;border:1px solid var(--bd);border-radius:8px;background:rgba(4,10,18,.9);color:var(--tx);font:inherit}
+details{margin-top:12px}summary{cursor:pointer;color:var(--ac);font:600 .78rem var(--mono);letter-spacing:.08em;text-transform:uppercase}
+.kws{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:10px}
+.cards{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:14px}
+.pc{background:var(--card);border:1px solid var(--bd);border-left:3px solid var(--ac);border-radius:12px;padding:14px;display:flex;flex-direction:column;gap:9px;box-shadow:0 8px 26px rgba(0,0,0,.3)}
+.pc:hover{border-color:var(--ac);box-shadow:0 0 22px rgba(0,229,255,.18)}
+.pc h3{margin:0;font-size:.98rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;color:#eaf6ff}
+.pc .meta{color:var(--mut);font-size:.82rem}
+.pc .m{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px dashed var(--bd);padding-top:9px}
+.pc .m div{font-size:.8rem}.pc .m span{display:block;color:var(--mut);font:.68rem var(--mono);letter-spacing:.06em;text-transform:uppercase}
+.pc .m b{font-family:var(--mono);color:#eaf6ff}
+.pc .act{display:flex;gap:8px;margin-top:auto;flex-wrap:wrap}
+.pc .act a,.pc .act button{font-size:.82rem;padding:6px 11px;text-decoration:none;color:var(--ac);border:1px solid rgba(0,229,255,.4);border-radius:8px;background:var(--acs)}
+.bd{font:.7rem var(--mono);padding:1px 8px;border-radius:6px;border:1px solid var(--bd);color:var(--mut)}
+.bd.new{color:var(--ok);border-color:rgba(34,255,154,.5);background:var(--oks)}.bd.warn{color:#ffd166;border-color:rgba(255,209,102,.5)}.bd.off{color:#ff7a90;border-color:rgba(255,122,144,.5)}
+.empty{padding:34px;text-align:center;color:var(--mut)}
 </style>
 </head>
 <body>
@@ -72,190 +94,144 @@ tbody tr:hover td{background:rgba(0,229,255,.05)}
   </div>
   <div class="side"><span class="chip">● MONITOREO ACTIVO</span><svg class="hero" viewBox="0 0 64 64" fill="none" aria-hidden="true"><path d="M32 4 56 18v28L32 60 8 46V18Z" stroke="#00e5ff" stroke-width="2" fill="rgba(0,229,255,.07)"/><path d="M32 4v7M8 32h9M47 32h9M32 53v7" stroke="#22ff9a" stroke-width="1.4" stroke-linecap="round"/><path d="M14 24h5v5M50 40h-5v-5" stroke="#00e5ff" stroke-width="1.2" stroke-linecap="round" opacity=".7"/><rect x="22" y="29" width="20" height="16" rx="3" stroke="#00e5ff" stroke-width="2" fill="rgba(0,229,255,.14)"/><path d="M26 29v-5a6 6 0 0 1 12 0v5" stroke="#00e5ff" stroke-width="2" stroke-linecap="round"/><circle cx="32" cy="36" r="2.6" fill="#22ff9a"/><path d="M32 38.5v3.5" stroke="#22ff9a" stroke-width="2" stroke-linecap="round"/><circle cx="32" cy="4" r="1.8" fill="#22ff9a"/><circle cx="8" cy="32" r="1.8" fill="#22ff9a"/><circle cx="56" cy="32" r="1.8" fill="#22ff9a"/><circle cx="32" cy="60" r="1.8" fill="#22ff9a"/><circle cx="14" cy="24" r="1.4" fill="#00e5ff"/><circle cx="50" cy="40" r="1.4" fill="#00e5ff"/></svg></div>
 </header>
-<h1>Panel de licitaciones con el Estado</h1>
-<p class="sub">Tu historial de procesos y las oportunidades nuevas del SEACE filtradas por tus servicios. Todo se procesa en tu navegador; los archivos no se suben a ningún servidor.</p>
+<h1>Oportunidades en ciberseguridad y redes</h1>
+<p class="sub">Procesos del Estado de firewall, VPN, antivirus, antispam, switches y routers. Todo se filtra en tu navegador; los archivos no se suben a ningún servidor.</p>
 
-<div class="tabs" role="tablist">
-  <button class="tab" role="tab" id="t1" aria-selected="true">Historial de procesos</button>
-  <button class="tab" role="tab" id="t2" aria-selected="false">Procesos nuevos</button>
-</div>
+<div class="drop" id="drop" tabindex="0" role="button"><strong>Carga aquí los procesos</strong> <span class="sub">(.json del Portal de Contrataciones Abiertas, .csv o .xlsx del buscador del SEACE; puedes elegir varios)</span>
+  <input id="file" type="file" accept=".json,.csv,.xlsx,.xls" multiple hidden></div>
+<div class="note" id="info">Si en tu repositorio existe un archivo <code>procesos.json</code>, la página lo carga sola al abrirse.</div>
 
-<!-- HISTORIAL -->
-<section id="p1">
-  <div class="card">
-    <div class="row2">
-      <div><label for="ruc">RUC de la empresa</label><input type="text" id="ruc" value="20607887404" inputmode="numeric"></div>
-      <div><label>Qué contiene el archivo CSV/Excel que cargues</label>
-        <div class="inl"><label><input type="radio" name="modo" value="g" checked> Adjudicaciones (ganados)</label><label><input type="radio" name="modo" value="p"> Postores (participados)</label></div></div>
-    </div>
-    <div class="drop" id="drop1" tabindex="0" role="button"><strong>Arrastra aquí tus archivos</strong><br><span class="sub">.json del Portal de Contrataciones Abiertas, .csv o .xlsx. Puedes elegir varios a la vez.</span>
-      <input id="file1" type="file" accept=".json,.xlsx,.xls,.csv" multiple hidden></div>
-    <div class="note" id="info1">Los .json (un proceso cada uno) se reconocen solos: si el RUC aparece como proveedor adjudicado cuenta como Ganado; si solo aparece entre los postores, como Participado.</div>
+<section class="card" style="margin-top:14px">
+  <div class="srch"><input type="text" id="q" placeholder="Buscar por palabra, entidad o nomenclatura (ej. fortigate, municipalidad, CP-ABR-8)"><button id="clr">Limpiar filtros</button></div>
+  <div class="chips" id="chips"></div>
+  <div class="flt">
+    <div><label for="reg">Región</label><select id="reg"><option value="">Todo el Perú</option></select></div>
+    <div><label for="mon">Monto</label><select id="mon"><option value="">Cualquier monto</option><option value="a">Hasta S/ 100,000</option><option value="b">S/ 100,000 a 500,000</option><option value="c">S/ 500,000 a 2 millones</option><option value="d">Más de S/ 2 millones</option><option value="n">Monto no publicado</option></select></div>
+    <div><label for="tip">Tipo de procedimiento</label><select id="tip"><option value="">Todos los tipos</option></select></div>
+    <div><label for="ord">Ordenar</label><select id="ord"><option value="c">⏰ Cierran primero</option><option value="r">🆕 Más recientes</option><option value="m">💰 Mayor monto</option></select></div>
   </div>
-  <div class="kpis" id="kpis"></div>
-  <div class="grid"><section class="card"><h2>Monto ganado por año</h2><div class="bars" id="byYear"><span class="note">Sin datos.</span></div></section>
-  <section class="card"><h2>Principales entidades (monto ganado)</h2><div class="bars" id="byEnt"><span class="note">Sin datos.</span></div></section></div>
-  <div class="bar"><div class="inl"><label><input type="radio" name="est" value="" checked> Todos</label><label><input type="radio" name="est" value="Ganado"> Ganados</label><label><input type="radio" name="est" value="Participado"> Participados</label></div>
-    <div style="display:flex;gap:8px;flex-wrap:wrap"><input type="text" id="q1" placeholder="Buscar entidad o descripción" style="width:230px"><button id="clr1">Borrar historial</button><button class="pri" id="exp1">Descargar CSV</button></div></div>
-  <div class="wrap"><table><thead id="th1"></thead><tbody id="tb1"></tbody></table></div>
+  <div class="inl" style="margin-top:10px"><label><input type="checkbox" id="vig"> Solo con plazo vigente (ofertas aún por vencer)</label></div>
+  <details><summary>Palabras clave por categoría</summary>
+    <div class="kws" id="kws"></div><div style="margin-top:10px"><button id="rst">Restaurar palabras clave</button></div>
+    <div class="note">Separadas por coma. Se buscan como palabra completa (admite plural), sin importar tildes ni mayúsculas.</div></details>
 </section>
 
-<!-- NUEVOS -->
-<section id="p2" hidden>
-  <div class="grid">
-    <section class="card">
-      <h2>Mis servicios</h2>
-      <label for="svc">Servicios que brindo (separados por coma)</label>
-      <textarea id="svc" placeholder="ej. seguridad informática, soporte técnico, desarrollo de software, mantenimiento de equipos"></textarea>
-      <div class="note">Solo se muestran procesos cuya descripción mencione alguno. Cada palabra o frase se busca tal cual, sin importar tildes ni mayúsculas.</div>
-    </section>
-    <section class="card">
-      <h2>Otros filtros</h2>
-      <div class="row2"><div><label for="regs">Regiones</label><input type="text" id="regs" placeholder="ej. lima, callao"></div>
-      <div><label for="hasta">Fecha límite hasta</label><input type="date" id="hasta"></div></div>
-      <div class="row2"><div><label for="min">Monto mínimo (S/)</label><input type="number" id="min" min="0"></div>
-      <div><label for="max">Monto máximo (S/)</label><input type="number" id="max" min="0"></div></div>
-    </section>
-  </div>
-  <div class="drop" id="drop2" tabindex="0" role="button"><strong>Arrastra aquí el Excel/CSV exportado del buscador del SEACE</strong><br><span class="sub">o haz clic para elegirlo</span>
-    <input id="file2" type="file" accept=".xlsx,.xls,.csv" hidden></div>
-  <div class="note" id="map2"></div>
-  <div class="bar"><div class="note" id="stats2">Aún no hay datos cargados.</div><button class="pri" id="exp2">Descargar CSV filtrado</button></div>
-  <div class="wrap"><table><thead id="th2"></thead><tbody id="tb2"></tbody></table></div>
-</section>
+<div class="bar"><div class="note" id="stats">Aún no hay datos cargados.</div><button class="pri" id="exp">Descargar CSV filtrado</button></div>
+<div class="cards" id="cards"></div>
+<div style="text-align:center;margin-top:16px"><button id="more" hidden>Mostrar más</button></div>
+<p class="note">Fuente: datos abiertos del OECE / SEACE. Verifica siempre las fechas y bases en el SEACE oficial antes de participar.</p>
 </main>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 <script>
 (function(){
 var $=function(i){return document.getElementById(i)};
 var norm=function(s){return String(s==null?'':s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim()};
-var list=function(s){return norm(s).split(',').map(function(x){return x.trim()}).filter(Boolean)};
-var KEY='okinawa-licit-v1',KH='okinawa-hist-v1';
+var KEY='okinawa-ops-v1';
 function lsGet(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
 function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+var CATS=[
+ {id:'firewall',n:'🧱 Firewall',k:'firewall, cortafuego, utm, ngfw, fortigate, palo alto, sonicwall, waf, seguridad perimetral'},
+ {id:'vpn',n:'🔐 VPN',k:'vpn, red privada virtual, ssl vpn, ipsec, acceso remoto seguro'},
+ {id:'antivirus',n:'🦠 Antivirus',k:'antivirus, antimalware, endpoint, edr, xdr, antiransomware, proteccion de endpoint'},
+ {id:'antispam',n:'✉️ Antispam',k:'antispam, anti spam, anti-spam, seguridad de correo, proteccion de correo, filtrado de correo, email security'},
+ {id:'switches',n:'🔀 Switches',k:'switch, switcher, conmutador'},
+ {id:'routers',n:'📡 Routers',k:'router, enrutador, ruteador'}];
+var kw=lsGet(KEY),data=[],sel={},shown=24,view=[];
+if(!kw)kw={};CATS.forEach(function(c){if(typeof kw[c.id]!=='string')kw[c.id]=c.k});
+var esc=function(s){return s.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')};
+var rx={};
+function compile(){CATS.forEach(function(c){rx[c.id]=kw[c.id].split(',').map(norm).filter(Boolean).map(function(w){return new RegExp('(?:^|[^a-z0-9])'+esc(w)+'(?:s|es)?(?=$|[^a-z0-9])')})})}
+function tag(){data.forEach(function(r){r.cats=CATS.filter(function(c){return rx[c.id].some(function(x){return x.test(r.t)})}).map(function(c){return c.id})})}
 function toNum(v){if(typeof v==='number')return v;var n=parseFloat(String(v==null?'':v).replace(/[^\d.,-]/g,'').replace(/,/g,''));return isNaN(n)?null:n}
-function toDate(v){
-  if(v==null||v==='')return null;if(v instanceof Date)return v;
-  if(typeof v==='number'&&v>20000&&v<80000)return new Date(Math.round((v-25569)*86400000));
-  var s=String(v).trim(),m=s.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})/);if(m)return new Date(+m[3],+m[2]-1,+m[1]);
-  var d=new Date(s);return isNaN(d)?null:d;}
-var fmtD=function(d){return d?('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2)+'/'+d.getFullYear():'—'};
-var fmtM=function(n){return n==null?'—':n.toLocaleString('es-PE',{maximumFractionDigits:2})};
-function detect(h,ALIAS){var m={},used={},hn=h.map(norm);
-  Object.keys(ALIAS).forEach(function(f){var found=-1;
-    ALIAS[f].some(function(a){var i=hn.indexOf(a);if(i>=0&&!used[i]){found=i;return true}return false});
-    if(found<0)ALIAS[f].some(function(a){for(var i=0;i<hn.length;i++){if(!used[i]&&hn[i].indexOf(a)>=0){found=i;return true}}return false});
-    if(found>=0){used[found]=1;m[f]=h[found]}});return m;}
-function readTable(file,cb){var r=new FileReader();r.onload=function(e){try{
-  var wb=XLSX.read(e.target.result,{type:'array',cellDates:true});cb(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{defval:''}))}catch(x){alert('No pude leer '+file.name)}};r.readAsArrayBuffer(file)}
-function csvOut(rows,name){if(!rows.length){alert('No hay filas para exportar.');return}
-  var ks=Object.keys(rows[0]),esc=function(v){v=String(v==null?'':v);return /[",\n;]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v};
-  var t='\uFEFF'+ks.map(esc).join(',')+'\n'+rows.map(function(r){return ks.map(function(k){return esc(r[k])}).join(',')}).join('\n');
-  var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/csv;charset=utf-8'}));a.download=name;document.body.appendChild(a);a.click();a.remove();}
-function cell(tr,txt,cls){var td=document.createElement('td');td.textContent=txt;if(cls)td.className=cls;tr.appendChild(td);return td}
-function heads(th,cols,labels,state,rerender){th.textContent='';var tr=document.createElement('tr');
-  cols.forEach(function(k){var h=document.createElement('th');h.textContent=labels[k]+(state.k===k?(state.d>0?' ▲':' ▼'):'');
-    h.onclick=function(){if(state.k===k)state.d*=-1;else{state.k=k;state.d=1}rerender()};tr.appendChild(h)});th.appendChild(tr)}
-function cmp(a,b,k,d){var x=a[k],y=b[k];if(x instanceof Date||y instanceof Date||typeof x==='number'||typeof y==='number'){x=x==null?-1:+x;y=y==null?-1:+y;return(x-y)*d}return norm(x).localeCompare(norm(y))*d}
-
-/* tabs */
-function tab(n){$('p1').hidden=n!==1;$('p2').hidden=n!==2;$('t1').setAttribute('aria-selected',n===1);$('t2').setAttribute('aria-selected',n===2)}
-$('t1').onclick=function(){tab(1)};$('t2').onclick=function(){tab(2)};
-
-/* ===== HISTORIAL ===== */
-var hist=[],HL={est:'Estado',ref:'Proceso',ent:'Entidad',desc:'Descripción',monto:'Monto (S/)',fecha:'Fecha'},HC=['est','ref','ent','desc','monto','fecha'],hs={k:'fecha',d:-1},hview=[];
-(function(){var s=lsGet(KH);if(s&&s.rows){hist=s.rows.map(function(r){r.fecha=r.fecha?new Date(r.fecha):null;return r});}var c=lsGet(KEY);if(c&&c.ruc)$('ruc').value=c.ruc})();
-function ruc(){return $('ruc').value.replace(/\D/g,'')}
-function fromRel(r,R){
-  var t=r.tender||{},ten=(t.tenderers||[]).some(function(x){return String(x.id||'').indexOf(R)>=0});
-  var won=(r.awards||[]).filter(function(a){return(a.suppliers||[]).some(function(s){return String(s.id||'').indexOf(R)>=0})});
-  if(!ten&&!won.length)return null;
-  var m=won.length?won.reduce(function(s,a){return s+((a.value||{}).amount||0)},0):((t.value||{}).amount||null);
-  var f=won.length?won[0].date:t.datePublished;
-  return{est:won.length?'Ganado':'Participado',ref:t.title||t.id||'',ent:(r.buyer||{}).name||'',desc:t.description||'',monto:m,fecha:f?new Date(f):null};}
-function addJson(obj,R){var rels=[],n=0;
-  if(obj.records)obj.records.forEach(function(x){if(x.compiledRelease)rels.push(x.compiledRelease)});
-  else if(obj.releases)rels=obj.releases;else if(obj.tender||obj.awards)rels=[obj];
-  rels.forEach(function(r){var e=fromRel(r,R);if(e){hist.push(e);n++}});return n}
-var HA={ref:['nomenclatura','codigo','proceso','numero'],ent:['entidad'],desc:['descripcion','objeto'],monto:['monto adjudicado','valor adjudicado','monto','valor'],fecha:['fecha de adjudicacion','fecha buena pro','fecha adjudicacion','fecha']};
-function addTable(data,R,modo){if(!data.length)return 0;var m=detect(Object.keys(data[0]),HA),n=0;
-  data.forEach(function(o){var txt=Object.keys(o).map(function(k){return o[k]}).join(' ');if(txt.indexOf(R)<0)return;
-    var g=function(f){return m[f]?o[m[f]]:''};
-    hist.push({est:modo==='g'?'Ganado':'Participado',ref:String(g('ref')),ent:String(g('ent')),desc:String(g('desc')),monto:m.monto?toNum(g('monto')):null,fecha:m.fecha?toDate(g('fecha')):null});n++});return n}
-function loadHist(files){var R=ruc();if(R.length!==11){alert('Revisa el RUC: debe tener 11 dígitos.');return}
-  var modo=document.querySelector('input[name=modo]:checked').value,pend=files.length,tot=0,names=[];
-  [].forEach.call(files,function(f){
-    var done=function(n){tot+=n;names.push(f.name+' ('+n+')');if(--pend===0){dedupe();saveHist();renderHist();$('info1').textContent='Cargados: '+names.join(', ')+'. Total en el historial: '+hist.length+'.'}};
-    if(/\.json$/i.test(f.name)){var r=new FileReader();r.onload=function(e){var n=0;try{n=addJson(JSON.parse(e.target.result),R)}catch(x){alert('JSON no válido: '+f.name)}done(n)};r.readAsText(f)}
-    else readTable(f,function(d){done(addTable(d,R,modo))});});}
-function dedupe(){var seen={};hist=hist.filter(function(r){var k=[r.est,r.ref,r.ent,r.fecha?+r.fecha:'',r.monto].join('|');if(seen[k])return false;seen[k]=1;return true})}
-function saveHist(){lsSet(KH,{rows:hist.map(function(r){return{est:r.est,ref:r.ref,ent:r.ent,desc:r.desc,monto:r.monto,fecha:r.fecha?r.fecha.toISOString():null}})})}
-function bars(el,pairs){el.textContent='';if(!pairs.length){el.textContent='Sin datos.';return}var mx=Math.max.apply(null,pairs.map(function(p){return p[1]}))||1;
-  pairs.forEach(function(p){var r=document.createElement('div');r.className='r';var a=document.createElement('span');a.textContent=p[0];a.style.overflow='hidden';a.style.textOverflow='ellipsis';a.style.whiteSpace='nowrap';a.title=p[0];
-    var t=document.createElement('div');t.className='t';var f=document.createElement('div');f.className='f';f.style.width=Math.max(2,p[1]/mx*100)+'%';t.appendChild(f);
-    var v=document.createElement('span');v.textContent='S/ '+fmtM(p[1]);r.append(a,t,v);el.appendChild(r)})}
-function renderHist(){
-  var gan=hist.filter(function(r){return r.est==='Ganado'}),par=hist.filter(function(r){return r.est==='Participado'});
-  var tot=gan.reduce(function(s,r){return s+(r.monto||0)},0);
-  var k=$('kpis');k.textContent='';
-  [['Procesos ganados',gan.length],['Monto total ganado','S/ '+fmtM(tot)],['Participados sin ganar',par.length],['Tasa de éxito',par.length?Math.round(gan.length/(gan.length+par.length)*100)+'%':'—']].forEach(function(x){
-    var d=document.createElement('div');d.className='kpi';var b=document.createElement('b');b.textContent=x[1];var s=document.createElement('span');s.textContent=x[0];d.append(b,s);k.appendChild(d)});
-  var ay={},ae={};gan.forEach(function(r){var y=r.fecha?r.fecha.getFullYear():'s/f';ay[y]=(ay[y]||0)+(r.monto||0);ae[r.ent||'—']=(ae[r.ent||'—']||0)+(r.monto||0)});
-  bars($('byYear'),Object.keys(ay).sort().map(function(y){return[y,ay[y]]}));
-  bars($('byEnt'),Object.keys(ae).sort(function(a,b){return ae[b]-ae[a]}).slice(0,6).map(function(e){return[e,ae[e]]}));
-  var est=document.querySelector('input[name=est]:checked').value,q=norm($('q1').value);
-  hview=hist.filter(function(r){return(!est||r.est===est)&&(!q||norm(r.ent+' '+r.desc+' '+r.ref).indexOf(q)>=0)});
-  hview.sort(function(a,b){return cmp(a,b,hs.k,hs.d)});
-  heads($('th1'),HC,HL,hs,renderHist);var tb=$('tb1');tb.textContent='';
-  hview.forEach(function(r){var tr=document.createElement('tr');var td=cell(tr,r.est);td.innerHTML='';var s=document.createElement('span');s.className='tag'+(r.est==='Ganado'?' win':'');s.textContent=r.est;td.textContent='';td.appendChild(s);
-    cell(tr,r.ref||'—');cell(tr,r.ent||'—');cell(tr,r.desc||'—');cell(tr,fmtM(r.monto));cell(tr,fmtD(r.fecha));tb.appendChild(tr)});}
-var d1=$('drop1'),f1=$('file1');
-d1.onclick=function(){f1.click()};d1.onkeydown=function(e){if(e.key==='Enter'||e.key===' ')f1.click()};
-f1.onchange=function(){if(f1.files.length)loadHist(f1.files);f1.value=''};
-['dragenter','dragover'].forEach(function(ev){d1.addEventListener(ev,function(e){e.preventDefault();d1.classList.add('over')})});
-['dragleave','drop'].forEach(function(ev){d1.addEventListener(ev,function(e){e.preventDefault();d1.classList.remove('over')})});
-d1.addEventListener('drop',function(e){if(e.dataTransfer.files.length)loadHist(e.dataTransfer.files)});
-document.querySelectorAll('input[name=est]').forEach(function(i){i.onchange=renderHist});$('q1').oninput=renderHist;
-$('ruc').oninput=function(){var c=lsGet(KEY)||{};c.ruc=$('ruc').value;lsSet(KEY,c)};
-$('clr1').onclick=function(){if(confirm('¿Borrar el historial cargado en este navegador?')){hist=[];saveHist();renderHist();$('info1').textContent='Historial borrado.'}};
-$('exp1').onclick=function(){csvOut(hview.map(function(r){return{Estado:r.est,Proceso:r.ref,Entidad:r.ent,Descripcion:r.desc,Monto:r.monto,Fecha:fmtD(r.fecha)}}),'historial-okinawa-tech.csv')};
-
-/* ===== NUEVOS ===== */
-var NA={desc:['descripcion del objeto','descripcion de objeto','descripcion'],nom:['nomenclatura','codigo','proceso'],ent:['entidad convocante','nombre de la entidad','entidad'],monto:['valor referencial','valor estimado','monto'],fecha:['fecha limite','fecha de presentacion','fecha de publicacion','fecha publicacion','fecha de convocatoria','fecha'],reg:['departamento','region']};
-var NL={nom:'Nomenclatura',ent:'Entidad',desc:'Descripción',svc:'Coincide con',monto:'Monto (S/)',fecha:'Fecha'},NC=['nom','ent','desc','svc','monto','fecha'],ns={k:'fecha',d:1},rows=[],map={},nview=[];
-function cfg(){return{svc:$('svc').value,regs:$('regs').value,hasta:$('hasta').value,min:$('min').value,max:$('max').value}}
-function saveCfg(){var c=lsGet(KEY)||{};var n=cfg();Object.keys(n).forEach(function(k){c[k]=n[k]});lsSet(KEY,c)}
-(function(){var c=lsGet(KEY);if(!c)return;['svc','regs','hasta','min','max'].forEach(function(k){if(c[k]!=null)$(k).value=c[k]})})();
-function loadNews(file){readTable(file,function(data){if(!data.length){alert('El archivo no tiene filas.');return}
-  map=detect(Object.keys(data[0]),NA);
-  rows=data.map(function(o){var g=function(f){return map[f]?o[map[f]]:''};
-    return{raw:o,t:norm(Object.keys(o).map(function(k){return o[k]}).join(' ')),nom:String(g('nom')),ent:String(g('ent')),desc:String(g('desc')),reg:String(g('reg')),monto:map.monto?toNum(g('monto')):null,fecha:map.fecha?toDate(g('fecha')):null,svc:''}});
-  var b=$('map2');b.textContent='Columnas detectadas: ';Object.keys(NA).forEach(function(f){var s=document.createElement('span');s.className='tag';s.textContent=f+(map[f]?' ← '+map[f]:' (no encontrada)');b.appendChild(s)});
-  renderNews()})}
-function renderNews(){saveCfg();var c=cfg(),sv=list(c.svc),rg=list(c.regs),mn=c.min!==''?+c.min:null,mx=c.max!==''?+c.max:null,ha=c.hasta?new Date(c.hasta+'T23:59:59'):null;
-  nview=rows.filter(function(r){
-    r.svc=sv.filter(function(x){return r.t.indexOf(x)>=0}).join(', ');
-    if(sv.length&&!r.svc)return false;
-    if(rg.length&&!rg.some(function(x){return norm(r.reg).indexOf(x)>=0}))return false;
-    if(mn!=null&&(r.monto==null||r.monto<mn))return false;if(mx!=null&&(r.monto==null||r.monto>mx))return false;
-    if(ha&&(!r.fecha||r.fecha>ha))return false;return true});
-  nview.sort(function(a,b){return cmp(a,b,ns.k,ns.d)});
-  heads($('th2'),NC,NL,ns,renderNews);var tb=$('tb2');tb.textContent='';
-  nview.slice(0,1000).forEach(function(r){var tr=document.createElement('tr');cell(tr,r.nom||'—');cell(tr,r.ent||'—');cell(tr,r.desc||'—');
-    var td=document.createElement('td');r.svc.split(', ').filter(Boolean).forEach(function(s){var t=document.createElement('span');t.className='tag';t.textContent=s;td.appendChild(t)});tr.appendChild(td);
-    cell(tr,fmtM(r.monto));cell(tr,fmtD(r.fecha));tb.appendChild(tr)});
-  $('stats2').textContent=nview.length+' procesos coinciden con mis servicios, de '+rows.length+' cargados'+(nview.length>1000?' (se muestran 1000; el CSV trae todos)':'')+(sv.length?'':'. Escribe tus servicios para filtrar.');}
-var d2=$('drop2'),f2=$('file2');
-d2.onclick=function(){f2.click()};d2.onkeydown=function(e){if(e.key==='Enter'||e.key===' ')f2.click()};
-f2.onchange=function(){if(f2.files[0])loadNews(f2.files[0])};
-['dragenter','dragover'].forEach(function(ev){d2.addEventListener(ev,function(e){e.preventDefault();d2.classList.add('over')})});
-['dragleave','drop'].forEach(function(ev){d2.addEventListener(ev,function(e){e.preventDefault();d2.classList.remove('over')})});
-d2.addEventListener('drop',function(e){if(e.dataTransfer.files[0])loadNews(e.dataTransfer.files[0])});
-['svc','regs','hasta','min','max'].forEach(function(k){$(k).addEventListener('input',function(){if(rows.length)renderNews();else saveCfg()})});
-$('exp2').onclick=function(){csvOut(nview.map(function(r){var o={'Coincide con':r.svc};Object.keys(r.raw).forEach(function(k){o[k]=r.raw[k]});return o}),'procesos-nuevos-filtrados.csv')};
-
-heads($('th2'),NC,NL,ns,renderNews);renderHist();
+function toDate(v){if(v==null||v==='')return null;if(v instanceof Date)return v;
+ if(typeof v==='number'&&v>20000&&v<80000)return new Date(Math.round((v-25569)*86400000));
+ var s=String(v).trim(),m=s.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})/);if(m)return new Date(+m[3],+m[2]-1,+m[1]);
+ var d=new Date(s);return isNaN(d)?null:d}
+var fD=function(d){return d?('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2)+'/'+d.getFullYear():'—'};
+var fM=function(n){return n==null?'No publicado':'S/ '+n.toLocaleString('es-PE',{maximumFractionDigits:0})};
+function detect(h,A){var m={},used={},hn=h.map(norm);
+ Object.keys(A).forEach(function(f){var found=-1;
+  A[f].some(function(a){var i=hn.indexOf(a);if(i>=0&&!used[i]){found=i;return true}return false});
+  if(found<0)A[f].some(function(a){for(var i=0;i<hn.length;i++){if(!used[i]&&hn[i].indexOf(a)>=0){found=i;return true}}return false});
+  if(found>=0){used[found]=1;m[f]=h[found]}});return m}
+var TA={desc:['descripcion del objeto','descripcion de objeto','descripcion','objeto de contratacion'],ref:['nomenclatura','codigo','proceso'],ent:['entidad convocante','nombre de la entidad','entidad'],tipo:['tipo de procedimiento','procedimiento de seleccion','tipo de seleccion','tipo'],monto:['valor referencial','valor estimado','monto'],reg:['departamento','region'],ofe:['fecha de presentacion de ofertas','fecha presentacion de propuestas','fecha de presentacion','fecha limite','presentacion'],cons:['fecha de consultas','consultas'],pub:['fecha de publicacion','fecha publicacion','fecha de convocatoria','publicacion','fecha'],url:['url','enlace','link']};
+function fromTable(rows){if(!rows.length)return 0;var m=detect(Object.keys(rows[0]),TA);
+ rows.forEach(function(o){var g=function(f){return m[f]?o[m[f]]:''};
+  data.push({ref:String(g('ref')),ent:String(g('ent')),desc:String(g('desc')),reg:String(g('reg')),tipo:String(g('tipo')),monto:m.monto?toNum(g('monto')):null,pub:m.pub?toDate(g('pub')):null,cons:m.cons?toDate(g('cons')):null,ofe:m.ofe?toDate(g('ofe')):null,url:/^https?:/.test(String(g('url')))?String(g('url')):'',raw:o,
+   t:norm(Object.keys(o).map(function(k){return o[k]}).join(' '))})});return rows.length}
+function fromRel(r,uri){var t=r.tender||{},b=(r.parties||[]).filter(function(p){return(p.roles||[]).indexOf('buyer')>=0})[0]||{},ad=b.address||{};
+ var items=(t.items||[]).map(function(i){return(i.description||'')+' '+((i.classification||{}).description||'')}).join(' ');
+ var ent=(r.buyer||{}).name||(t.procuringEntity||{}).name||'';
+ data.push({ref:t.title||t.id||'',ent:ent,desc:t.description||t.title||'',reg:ad.department||ad.region||'',tipo:t.procurementMethodDetails||'',monto:(t.value||{}).amount!=null?(t.value||{}).amount:null,
+  pub:toDate(t.datePublished),cons:toDate((t.enquiryPeriod||{}).endDate),ofe:toDate((t.tenderPeriod||{}).endDate),url:uri||'',raw:{proceso:t.title,entidad:ent,descripcion:t.description,monto:(t.value||{}).amount},
+  t:norm([t.title,t.description,items,ent].join(' '))})}
+function fromJson(o){var n=0;
+ if(Array.isArray(o)){return fromTable(o)}
+ if(o.records)o.records.forEach(function(x){if(x.compiledRelease){fromRel(x.compiledRelease,x.uri);n++}});
+ else if(o.releases)o.releases.forEach(function(x){fromRel(x,'');n++});
+ else if(o.tender){fromRel(o,'');n=1}return n}
+function finish(){var seen={};data=data.filter(function(r){var k=r.ref+'|'+r.ent+'|'+r.desc.slice(0,60);if(seen[k])return false;seen[k]=1;return true});tag();fillSel();render()}
+function loadFiles(fs){var pend=fs.length,msg=[];
+ [].forEach.call(fs,function(f){var done=function(n){msg.push(f.name+' ('+n+')');if(--pend===0){finish();$('info').textContent='Cargados: '+msg.join(', ')+'. Total en la página: '+data.length+' procesos.'}};
+  if(/\.json$/i.test(f.name)){var r=new FileReader();r.onload=function(e){var n=0;try{n=fromJson(JSON.parse(e.target.result))}catch(x){alert('JSON no válido: '+f.name)}done(n)};r.readAsText(f)}
+  else{var r2=new FileReader();r2.onload=function(e){var n=0;try{var wb=XLSX.read(e.target.result,{type:'array',cellDates:true});n=fromTable(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{defval:''}))}catch(x){alert('No pude leer '+f.name)}done(n)};r2.readAsArrayBuffer(f)}})}
+function fillSel(){[['reg','reg'],['tip','tipo']].forEach(function(p){var el=$(p[0]),cur=el.value,vals={};data.forEach(function(r){if(r[p[1]])vals[r[p[1]]]=1});
+ var first=el.options[0];el.textContent='';el.appendChild(first);Object.keys(vals).sort().forEach(function(v){var o=document.createElement('option');o.value=v;o.textContent=v;el.appendChild(o)});el.value=vals[cur]?cur:''})}
+function passBase(r){var q=norm($('q').value);if(q&&r.t.indexOf(q)<0&&norm(r.ref).indexOf(q)<0)return false;
+ if($('reg').value&&r.reg!==$('reg').value)return false;if($('tip').value&&r.tipo!==$('tip').value)return false;
+ var mo=$('mon').value,m=r.monto;if(mo==='n'&&m!=null)return false;if(mo&&mo!=='n'){if(m==null)return false;if(mo==='a'&&m>100000)return false;if(mo==='b'&&(m<=100000||m>500000))return false;if(mo==='c'&&(m<=500000||m>2000000))return false;if(mo==='d'&&m<=2000000)return false}
+ if($('vig').checked&&(!r.ofe||r.ofe<new Date(new Date().setHours(0,0,0,0))))return false;return true}
+function renderChips(base){var box=$('chips');box.textContent='';
+ CATS.forEach(function(c){var n=base.filter(function(r){return r.cats.indexOf(c.id)>=0}).length;
+  var b=document.createElement('button');b.className='chp';b.setAttribute('aria-pressed',!!sel[c.id]);b.textContent=c.n;var s=document.createElement('small');s.textContent=n;b.appendChild(s);
+  b.onclick=function(){sel[c.id]=!sel[c.id];shown=24;render()};box.appendChild(b)})}
+function days(d){return Math.ceil((d-new Date(new Date().setHours(0,0,0,0)))/86400000)}
+function card(r){var d=document.createElement('article');d.className='pc';
+ var top=document.createElement('div');top.style.cssText='display:flex;flex-wrap:wrap;gap:6px';
+ var add=function(txt,cls){var s=document.createElement('span');s.className=cls||'tag';s.textContent=txt;top.appendChild(s)};
+ if(r.tipo)add(r.tipo,'bd');r.cats.forEach(function(id){add(CATS.filter(function(c){return c.id===id})[0].n)});
+ if(r.pub&&days(r.pub)>=-3)add('Nuevo','bd new');
+ if(r.ofe){var k=days(r.ofe);if(k<0)add('Cerrado','bd off');else if(k===0)add('Cierra hoy','bd warn');else add('Cierra en '+k+' d','bd'+(k<=3?' warn':''))}
+ d.appendChild(top);
+ var h=document.createElement('h3');h.textContent=r.desc||r.ref;d.appendChild(h);
+ var m=document.createElement('div');m.className='meta';m.textContent='🏛️ '+(r.ent||'—')+(r.reg?' · 📍 '+r.reg:'')+(r.ref?' · '+r.ref:'');d.appendChild(m);
+ var g=document.createElement('div');g.className='m';[['Valor',fM(r.monto)],['Consultas',fD(r.cons)],['Ofertas',fD(r.ofe)]].forEach(function(x){var e=document.createElement('div'),a=document.createElement('span'),b=document.createElement('b');a.textContent=x[0];b.textContent=x[1];e.append(a,b);g.appendChild(e)});d.appendChild(g);
+ var ac=document.createElement('div');ac.className='act';
+ if(r.url){var a=document.createElement('a');a.href=r.url;a.target='_blank';a.rel='noopener';a.textContent='Ver ficha →';ac.appendChild(a)}
+ var w=document.createElement('a');w.target='_blank';w.rel='noopener';w.href='https://wa.me/?text='+encodeURIComponent('Mira este proceso: '+(r.desc||r.ref).slice(0,140)+' ('+r.ref+')');w.textContent='💬 Compartir';ac.appendChild(w);
+ var cp=document.createElement('button');cp.textContent='Copiar código';cp.onclick=function(){try{navigator.clipboard.writeText(r.ref);cp.textContent='¡Copiado!';setTimeout(function(){cp.textContent='Copiar código'},1200)}catch(e){}};ac.appendChild(cp);
+ d.appendChild(ac);return d}
+function render(){
+ var base=data.filter(function(r){return r.cats.length&&passBase(r)});renderChips(base);
+ var act=CATS.filter(function(c){return sel[c.id]}).map(function(c){return c.id});
+ view=base.filter(function(r){return!act.length||act.some(function(id){return r.cats.indexOf(id)>=0})});
+ var o=$('ord').value,T=function(d){return d?+d:null};
+ view.sort(function(a,b){if(o==='m')return(b.monto||-1)-(a.monto||-1);if(o==='r')return(T(b.pub)||0)-(T(a.pub)||0);
+  var now=+new Date(new Date().setHours(0,0,0,0)),fa=T(a.ofe),fb=T(b.ofe),ka=fa==null?9e15:(fa<now?8e15+(now-fa):fa),kb=fb==null?9e15:(fb<now?8e15+(now-fb):fb);return ka-kb});
+ var box=$('cards');box.textContent='';
+ if(!data.length){$('stats').textContent='Aún no hay datos cargados.';var e=document.createElement('div');e.className='empty';e.textContent='Carga un archivo para ver los procesos que coinciden con tus categorías.';box.appendChild(e);$('more').hidden=true;return}
+ $('stats').textContent=view.length+' procesos de ciberseguridad y redes (de '+data.length+' cargados)';
+ if(!view.length){var e2=document.createElement('div');e2.className='empty';e2.textContent='Ningún proceso coincide con estos filtros.';box.appendChild(e2)}
+ view.slice(0,shown).forEach(function(r){box.appendChild(card(r))});$('more').hidden=view.length<=shown}
+function csvOut(){if(!view.length){alert('No hay procesos para exportar.');return}
+ var rows=view.map(function(r){return{Proceso:r.ref,Entidad:r.ent,Region:r.reg,Tipo:r.tipo,Categorias:r.cats.join(' | '),Descripcion:r.desc,Monto:r.monto,Consultas:fD(r.cons),Ofertas:fD(r.ofe),Ficha:r.url}});
+ var ks=Object.keys(rows[0]),e=function(v){v=String(v==null?'':v);return/[",\n;]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v};
+ var t='\uFEFF'+ks.map(e).join(',')+'\n'+rows.map(function(r){return ks.map(function(k){return e(r[k])}).join(',')}).join('\n');
+ var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/csv;charset=utf-8'}));a.download='oportunidades-okinawatec.csv';document.body.appendChild(a);a.click();a.remove()}
+function buildKw(){var b=$('kws');b.textContent='';CATS.forEach(function(c){var w=document.createElement('div'),l=document.createElement('label'),t=document.createElement('textarea');l.textContent=c.n;t.value=kw[c.id];t.style.minHeight='52px';
+ t.oninput=function(){kw[c.id]=t.value;lsSet(KEY,kw);compile();tag();render()};w.append(l,t);b.appendChild(w)})}
+var dr=$('drop'),fi=$('file');
+dr.onclick=function(){fi.click()};dr.onkeydown=function(e){if(e.key==='Enter'||e.key===' ')fi.click()};
+fi.onchange=function(){if(fi.files.length)loadFiles(fi.files);fi.value=''};
+['dragenter','dragover'].forEach(function(v){dr.addEventListener(v,function(e){e.preventDefault();dr.classList.add('over')})});
+['dragleave','drop'].forEach(function(v){dr.addEventListener(v,function(e){e.preventDefault();dr.classList.remove('over')})});
+dr.addEventListener('drop',function(e){if(e.dataTransfer.files.length)loadFiles(e.dataTransfer.files)});
+['q','reg','mon','tip','ord','vig'].forEach(function(i){$(i).addEventListener('input',function(){shown=24;render()})});
+$('more').onclick=function(){shown+=24;render()};$('exp').onclick=csvOut;
+$('clr').onclick=function(){$('q').value='';['reg','mon','tip'].forEach(function(i){$(i).value=''});$('vig').checked=false;sel={};shown=24;render()};
+$('rst').onclick=function(){CATS.forEach(function(c){kw[c.id]=c.k});lsSet(KEY,kw);buildKw();compile();tag();render()};
+compile();buildKw();render();
+try{fetch('procesos.json').then(function(r){return r.ok?r.json():null}).then(function(j){if(j){var n=fromJson(j);finish();$('info').textContent='Cargados automáticamente desde procesos.json ('+n+' procesos).'}}).catch(function(){})}catch(e){}
 })();
 </script>
 <script>
