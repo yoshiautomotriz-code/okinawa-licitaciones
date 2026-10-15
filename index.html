@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Grupo Okinawa Tech · Licitaciones con el Estado</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#f6f7f9;--card:#fff;--tx:#1b2330;--mut:#5d6878;--bd:#dde2ea;--ac:#0b5fff;--acs:#e6eeff;--hi:#fff6d6;--ok:#127a3d;--oks:#e3f5ea;color-scheme:light}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10141b;--card:#181e28;--tx:#e8ecf2;--mut:#9aa6b8;--bd:#2a3342;--ac:#6f9dff;--acs:#1c2a48;--hi:#3a3216;--ok:#5fd18a;--oks:#173324;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#10141b;--card:#181e28;--tx:#e8ecf2;--mut:#9aa6b8;--bd:#2a3342;--ac:#6f9dff;--acs:#1c2a48;--hi:#3a3216;--ok:#5fd18a;--oks:#173324;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:1180px;margin:0 auto;padding:20px 16px 48px}
+h1{font-size:1.5rem;margin:0 0 4px}h2{font-size:1rem;margin:0 0 10px}
+.sub,.note{color:var(--mut)}.sub{margin:0 0 16px}.note{font-size:.82rem;margin-top:8px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:16px}
+.tabs{display:flex;gap:6px;margin:0 0 14px;border-bottom:1px solid var(--bd)}
+.tab{border:0;border-bottom:3px solid transparent;border-radius:0;background:none;padding:10px 14px;font-weight:600;color:var(--mut)}
+.tab[aria-selected=true]{color:var(--ac);border-bottom-color:var(--ac)}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+@media (max-width:760px){.grid{grid-template-columns:1fr}}
+label{display:block;font-size:.85rem;color:var(--mut);margin:10px 0 4px}
+input[type=text],input[type=number],input[type=date],textarea{width:100%;padding:8px 10px;border:1px solid var(--bd);border-radius:8px;background:var(--bg);color:var(--tx);font:inherit}
+textarea{min-height:64px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.inl{display:flex;flex-wrap:wrap;gap:6px 16px}.inl label{display:flex;align-items:center;gap:6px;margin:0;color:var(--tx)}
+.drop{border:2px dashed var(--bd);border-radius:12px;padding:20px;text-align:center;cursor:pointer;background:var(--card);margin-top:12px}
+.drop.over{border-color:var(--ac);background:var(--acs)}
+button{font:inherit;padding:8px 14px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--tx);cursor:pointer}
+button.pri{background:var(--ac);border-color:var(--ac);color:#fff}
+.bar{display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;margin:16px 0 10px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:14px 0}
+.kpi{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:12px 14px}
+.kpi b{display:block;font-size:1.35rem}.kpi span{color:var(--mut);font-size:.82rem}
+.bars div.r{display:grid;grid-template-columns:70px 1fr 120px;gap:8px;align-items:center;margin:4px 0;font-size:.85rem}
+.bars .t{background:var(--acs);border-radius:6px;height:14px}.bars .f{background:var(--ac);height:14px;border-radius:6px}
+.wrap{overflow-x:auto;border:1px solid var(--bd);border-radius:12px;background:var(--card)}
+table{border-collapse:collapse;width:100%;min-width:860px;font-size:.88rem}
+th,td{padding:8px 10px;border-bottom:1px solid var(--bd);text-align:left;vertical-align:top}
+th{position:sticky;top:0;background:var(--card);cursor:pointer;white-space:nowrap;user-select:none}
+.tag{display:inline-block;background:var(--acs);color:var(--ac);border-radius:6px;padding:1px 7px;font-size:.78rem;margin:2px 4px 0 0}
+.win{background:var(--oks);color:var(--ok)}
+[hidden]{display:none!important}
+</style>
+</head>
+<body>
+<main>
+<h1>Grupo Okinawa Tech · Licitaciones con el Estado</h1>
+<p class="sub">Tu historial de procesos y las oportunidades nuevas del SEACE filtradas por tus servicios. Todo se procesa en tu navegador; los archivos no se suben a ningún servidor.</p>
+
+<div class="tabs" role="tablist">
+  <button class="tab" role="tab" id="t1" aria-selected="true">Historial de procesos</button>
+  <button class="tab" role="tab" id="t2" aria-selected="false">Procesos nuevos</button>
+</div>
+
+<!-- HISTORIAL -->
+<section id="p1">
+  <div class="card">
+    <div class="row2">
+      <div><label for="ruc">RUC de la empresa</label><input type="text" id="ruc" value="20607887404" inputmode="numeric"></div>
+      <div><label>Qué contiene el archivo CSV/Excel que cargues</label>
+        <div class="inl"><label><input type="radio" name="modo" value="g" checked> Adjudicaciones (ganados)</label><label><input type="radio" name="modo" value="p"> Postores (participados)</label></div></div>
+    </div>
+    <div class="drop" id="drop1" tabindex="0" role="button"><strong>Arrastra aquí tus archivos</strong><br><span class="sub">.json del Portal de Contrataciones Abiertas, .csv o .xlsx. Puedes elegir varios a la vez.</span>
+      <input id="file1" type="file" accept=".json,.xlsx,.xls,.csv" multiple hidden></div>
+    <div class="note" id="info1">Los .json (un proceso cada uno) se reconocen solos: si el RUC aparece como proveedor adjudicado cuenta como Ganado; si solo aparece entre los postores, como Participado.</div>
+  </div>
+  <div class="kpis" id="kpis"></div>
+  <div class="grid"><section class="card"><h2>Monto ganado por año</h2><div class="bars" id="byYear"><span class="note">Sin datos.</span></div></section>
+  <section class="card"><h2>Principales entidades (monto ganado)</h2><div class="bars" id="byEnt"><span class="note">Sin datos.</span></div></section></div>
+  <div class="bar"><div class="inl"><label><input type="radio" name="est" value="" checked> Todos</label><label><input type="radio" name="est" value="Ganado"> Ganados</label><label><input type="radio" name="est" value="Participado"> Participados</label></div>
+    <div style="display:flex;gap:8px;flex-wrap:wrap"><input type="text" id="q1" placeholder="Buscar entidad o descripción" style="width:230px"><button id="clr1">Borrar historial</button><button class="pri" id="exp1">Descargar CSV</button></div></div>
+  <div class="wrap"><table><thead id="th1"></thead><tbody id="tb1"></tbody></table></div>
+</section>
+
+<!-- NUEVOS -->
+<section id="p2" hidden>
+  <div class="grid">
+    <section class="card">
+      <h2>Mis servicios</h2>
+      <label for="svc">Servicios que brindo (separados por coma)</label>
+      <textarea id="svc" placeholder="ej. seguridad informática, soporte técnico, desarrollo de software, mantenimiento de equipos"></textarea>
+      <div class="note">Solo se muestran procesos cuya descripción mencione alguno. Cada palabra o frase se busca tal cual, sin importar tildes ni mayúsculas.</div>
+    </section>
+    <section class="card">
+      <h2>Otros filtros</h2>
+      <div class="row2"><div><label for="regs">Regiones</label><input type="text" id="regs" placeholder="ej. lima, callao"></div>
+      <div><label for="hasta">Fecha límite hasta</label><input type="date" id="hasta"></div></div>
+      <div class="row2"><div><label for="min">Monto mínimo (S/)</label><input type="number" id="min" min="0"></div>
+      <div><label for="max">Monto máximo (S/)</label><input type="number" id="max" min="0"></div></div>
+    </section>
+  </div>
+  <div class="drop" id="drop2" tabindex="0" role="button"><strong>Arrastra aquí el Excel/CSV exportado del buscador del SEACE</strong><br><span class="sub">o haz clic para elegirlo</span>
+    <input id="file2" type="file" accept=".xlsx,.xls,.csv" hidden></div>
+  <div class="note" id="map2"></div>
+  <div class="bar"><div class="note" id="stats2">Aún no hay datos cargados.</div><button class="pri" id="exp2">Descargar CSV filtrado</button></div>
+  <div class="wrap"><table><thead id="th2"></thead><tbody id="tb2"></tbody></table></div>
+</section>
+</main>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<script>
+(function(){
+var $=function(i){return document.getElementById(i)};
+var norm=function(s){return String(s==null?'':s).normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().trim()};
+var list=function(s){return norm(s).split(',').map(function(x){return x.trim()}).filter(Boolean)};
+var KEY='okinawa-licit-v1',KH='okinawa-hist-v1';
+function lsGet(k){try{return JSON.parse(localStorage.getItem(k)||'null')}catch(e){return null}}
+function lsSet(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function toNum(v){if(typeof v==='number')return v;var n=parseFloat(String(v==null?'':v).replace(/[^\d.,-]/g,'').replace(/,/g,''));return isNaN(n)?null:n}
+function toDate(v){
+  if(v==null||v==='')return null;if(v instanceof Date)return v;
+  if(typeof v==='number'&&v>20000&&v<80000)return new Date(Math.round((v-25569)*86400000));
+  var s=String(v).trim(),m=s.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})/);if(m)return new Date(+m[3],+m[2]-1,+m[1]);
+  var d=new Date(s);return isNaN(d)?null:d;}
+var fmtD=function(d){return d?('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2)+'/'+d.getFullYear():'—'};
+var fmtM=function(n){return n==null?'—':n.toLocaleString('es-PE',{maximumFractionDigits:2})};
+function detect(h,ALIAS){var m={},used={},hn=h.map(norm);
+  Object.keys(ALIAS).forEach(function(f){var found=-1;
+    ALIAS[f].some(function(a){var i=hn.indexOf(a);if(i>=0&&!used[i]){found=i;return true}return false});
+    if(found<0)ALIAS[f].some(function(a){for(var i=0;i<hn.length;i++){if(!used[i]&&hn[i].indexOf(a)>=0){found=i;return true}}return false});
+    if(found>=0){used[found]=1;m[f]=h[found]}});return m;}
+function readTable(file,cb){var r=new FileReader();r.onload=function(e){try{
+  var wb=XLSX.read(e.target.result,{type:'array',cellDates:true});cb(XLSX.utils.sheet_to_json(wb.Sheets[wb.SheetNames[0]],{defval:''}))}catch(x){alert('No pude leer '+file.name)}};r.readAsArrayBuffer(file)}
+function csvOut(rows,name){if(!rows.length){alert('No hay filas para exportar.');return}
+  var ks=Object.keys(rows[0]),esc=function(v){v=String(v==null?'':v);return /[",\n;]/.test(v)?'"'+v.replace(/"/g,'""')+'"':v};
+  var t='\uFEFF'+ks.map(esc).join(',')+'\n'+rows.map(function(r){return ks.map(function(k){return esc(r[k])}).join(',')}).join('\n');
+  var a=document.createElement('a');a.href=URL.createObjectURL(new Blob([t],{type:'text/csv;charset=utf-8'}));a.download=name;document.body.appendChild(a);a.click();a.remove();}
+function cell(tr,txt,cls){var td=document.createElement('td');td.textContent=txt;if(cls)td.className=cls;tr.appendChild(td);return td}
+function heads(th,cols,labels,state,rerender){th.textContent='';var tr=document.createElement('tr');
+  cols.forEach(function(k){var h=document.createElement('th');h.textContent=labels[k]+(state.k===k?(state.d>0?' ▲':' ▼'):'');
+    h.onclick=function(){if(state.k===k)state.d*=-1;else{state.k=k;state.d=1}rerender()};tr.appendChild(h)});th.appendChild(tr)}
+function cmp(a,b,k,d){var x=a[k],y=b[k];if(x instanceof Date||y instanceof Date||typeof x==='number'||typeof y==='number'){x=x==null?-1:+x;y=y==null?-1:+y;return(x-y)*d}return norm(x).localeCompare(norm(y))*d}
+
+/* tabs */
+function tab(n){$('p1').hidden=n!==1;$('p2').hidden=n!==2;$('t1').setAttribute('aria-selected',n===1);$('t2').setAttribute('aria-selected',n===2)}
+$('t1').onclick=function(){tab(1)};$('t2').onclick=function(){tab(2)};
+
+/* ===== HISTORIAL ===== */
+var hist=[],HL={est:'Estado',ref:'Proceso',ent:'Entidad',desc:'Descripción',monto:'Monto (S/)',fecha:'Fecha'},HC=['est','ref','ent','desc','monto','fecha'],hs={k:'fecha',d:-1},hview=[];
+(function(){var s=lsGet(KH);if(s&&s.rows){hist=s.rows.map(function(r){r.fecha=r.fecha?new Date(r.fecha):null;return r});}var c=lsGet(KEY);if(c&&c.ruc)$('ruc').value=c.ruc})();
+function ruc(){return $('ruc').value.replace(/\D/g,'')}
+function fromRel(r,R){
+  var t=r.tender||{},ten=(t.tenderers||[]).some(function(x){return String(x.id||'').indexOf(R)>=0});
+  var won=(r.awards||[]).filter(function(a){return(a.suppliers||[]).some(function(s){return String(s.id||'').indexOf(R)>=0})});
+  if(!ten&&!won.length)return null;
+  var m=won.length?won.reduce(function(s,a){return s+((a.value||{}).amount||0)},0):((t.value||{}).amount||null);
+  var f=won.length?won[0].date:t.datePublished;
+  return{est:won.length?'Ganado':'Participado',ref:t.title||t.id||'',ent:(r.buyer||{}).name||'',desc:t.description||'',monto:m,fecha:f?new Date(f):null};}
+function addJson(obj,R){var rels=[],n=0;
+  if(obj.records)obj.records.forEach(function(x){if(x.compiledRelease)rels.push(x.compiledRelease)});
+  else if(obj.releases)rels=obj.releases;else if(obj.tender||obj.awards)rels=[obj];
+  rels.forEach(function(r){var e=fromRel(r,R);if(e){hist.push(e);n++}});return n}
+var HA={ref:['nomenclatura','codigo','proceso','numero'],ent:['entidad'],desc:['descripcion','objeto'],monto:['monto adjudicado','valor adjudicado','monto','valor'],fecha:['fecha de adjudicacion','fecha buena pro','fecha adjudicacion','fecha']};
+function addTable(data,R,modo){if(!data.length)return 0;var m=detect(Object.keys(data[0]),HA),n=0;
+  data.forEach(function(o){var txt=Object.keys(o).map(function(k){return o[k]}).join(' ');if(txt.indexOf(R)<0)return;
+    var g=function(f){return m[f]?o[m[f]]:''};
+    hist.push({est:modo==='g'?'Ganado':'Participado',ref:String(g('ref')),ent:String(g('ent')),desc:String(g('desc')),monto:m.monto?toNum(g('monto')):null,fecha:m.fecha?toDate(g('fecha')):null});n++});return n}
+function loadHist(files){var R=ruc();if(R.length!==11){alert('Revisa el RUC: debe tener 11 dígitos.');return}
+  var modo=document.querySelector('input[name=modo]:checked').value,pend=files.length,tot=0,names=[];
+  [].forEach.call(files,function(f){
+    var done=function(n){tot+=n;names.push(f.name+' ('+n+')');if(--pend===0){dedupe();saveHist();renderHist();$('info1').textContent='Cargados: '+names.join(', ')+'. Total en el historial: '+hist.length+'.'}};
+    if(/\.json$/i.test(f.name)){var r=new FileReader();r.onload=function(e){var n=0;try{n=addJson(JSON.parse(e.target.result),R)}catch(x){alert('JSON no válido: '+f.name)}done(n)};r.readAsText(f)}
+    else readTable(f,function(d){done(addTable(d,R,modo))});});}
+function dedupe(){var seen={};hist=hist.filter(function(r){var k=[r.est,r.ref,r.ent,r.fecha?+r.fecha:'',r.monto].join('|');if(seen[k])return false;seen[k]=1;return true})}
+function saveHist(){lsSet(KH,{rows:hist.map(function(r){return{est:r.est,ref:r.ref,ent:r.ent,desc:r.desc,monto:r.monto,fecha:r.fecha?r.fecha.toISOString():null}})})}
+function bars(el,pairs){el.textContent='';if(!pairs.length){el.textContent='Sin datos.';return}var mx=Math.max.apply(null,pairs.map(function(p){return p[1]}))||1;
+  pairs.forEach(function(p){var r=document.createElement('div');r.className='r';var a=document.createElement('span');a.textContent=p[0];a.style.overflow='hidden';a.style.textOverflow='ellipsis';a.style.whiteSpace='nowrap';a.title=p[0];
+    var t=document.createElement('div');t.className='t';var f=document.createElement('div');f.className='f';f.style.width=Math.max(2,p[1]/mx*100)+'%';t.appendChild(f);
+    var v=document.createElement('span');v.textContent='S/ '+fmtM(p[1]);r.append(a,t,v);el.appendChild(r)})}
+function renderHist(){
+  var gan=hist.filter(function(r){return r.est==='Ganado'}),par=hist.filter(function(r){return r.est==='Participado'});
+  var tot=gan.reduce(function(s,r){return s+(r.monto||0)},0);
+  var k=$('kpis');k.textContent='';
+  [['Procesos ganados',gan.length],['Monto total ganado','S/ '+fmtM(tot)],['Participados sin ganar',par.length],['Tasa de éxito',par.length?Math.round(gan.length/(gan.length+par.length)*100)+'%':'—']].forEach(function(x){
+    var d=document.createElement('div');d.className='kpi';var b=document.createElement('b');b.textContent=x[1];var s=document.createElement('span');s.textContent=x[0];d.append(b,s);k.appendChild(d)});
+  var ay={},ae={};gan.forEach(function(r){var y=r.fecha?r.fecha.getFullYear():'s/f';ay[y]=(ay[y]||0)+(r.monto||0);ae[r.ent||'—']=(ae[r.ent||'—']||0)+(r.monto||0)});
+  bars($('byYear'),Object.keys(ay).sort().map(function(y){return[y,ay[y]]}));
+  bars($('byEnt'),Object.keys(ae).sort(function(a,b){return ae[b]-ae[a]}).slice(0,6).map(function(e){return[e,ae[e]]}));
+  var est=document.querySelector('input[name=est]:checked').value,q=norm($('q1').value);
+  hview=hist.filter(function(r){return(!est||r.est===est)&&(!q||norm(r.ent+' '+r.desc+' '+r.ref).indexOf(q)>=0)});
+  hview.sort(function(a,b){return cmp(a,b,hs.k,hs.d)});
+  heads($('th1'),HC,HL,hs,renderHist);var tb=$('tb1');tb.textContent='';
+  hview.forEach(function(r){var tr=document.createElement('tr');var td=cell(tr,r.est);td.innerHTML='';var s=document.createElement('span');s.className='tag'+(r.est==='Ganado'?' win':'');s.textContent=r.est;td.textContent='';td.appendChild(s);
+    cell(tr,r.ref||'—');cell(tr,r.ent||'—');cell(tr,r.desc||'—');cell(tr,fmtM(r.monto));cell(tr,fmtD(r.fecha));tb.appendChild(tr)});}
+var d1=$('drop1'),f1=$('file1');
+d1.onclick=function(){f1.click()};d1.onkeydown=function(e){if(e.key==='Enter'||e.key===' ')f1.click()};
+f1.onchange=function(){if(f1.files.length)loadHist(f1.files);f1.value=''};
+['dragenter','dragover'].forEach(function(ev){d1.addEventListener(ev,function(e){e.preventDefault();d1.classList.add('over')})});
+['dragleave','drop'].forEach(function(ev){d1.addEventListener(ev,function(e){e.preventDefault();d1.classList.remove('over')})});
+d1.addEventListener('drop',function(e){if(e.dataTransfer.files.length)loadHist(e.dataTransfer.files)});
+document.querySelectorAll('input[name=est]').forEach(function(i){i.onchange=renderHist});$('q1').oninput=renderHist;
+$('ruc').oninput=function(){var c=lsGet(KEY)||{};c.ruc=$('ruc').value;lsSet(KEY,c)};
+$('clr1').onclick=function(){if(confirm('¿Borrar el historial cargado en este navegador?')){hist=[];saveHist();renderHist();$('info1').textContent='Historial borrado.'}};
+$('exp1').onclick=function(){csvOut(hview.map(function(r){return{Estado:r.est,Proceso:r.ref,Entidad:r.ent,Descripcion:r.desc,Monto:r.monto,Fecha:fmtD(r.fecha)}}),'historial-okinawa-tech.csv')};
+
+/* ===== NUEVOS ===== */
+var NA={desc:['descripcion del objeto','descripcion de objeto','descripcion'],nom:['nomenclatura','codigo','proceso'],ent:['entidad convocante','nombre de la entidad','entidad'],monto:['valor referencial','valor estimado','monto'],fecha:['fecha limite','fecha de presentacion','fecha de publicacion','fecha publicacion','fecha de convocatoria','fecha'],reg:['departamento','region']};
+var NL={nom:'Nomenclatura',ent:'Entidad',desc:'Descripción',svc:'Coincide con',monto:'Monto (S/)',fecha:'Fecha'},NC=['nom','ent','desc','svc','monto','fecha'],ns={k:'fecha',d:1},rows=[],map={},nview=[];
+function cfg(){return{svc:$('svc').value,regs:$('regs').value,hasta:$('hasta').value,min:$('min').value,max:$('max').value}}
+function saveCfg(){var c=lsGet(KEY)||{};var n=cfg();Object.keys(n).forEach(function(k){c[k]=n[k]});lsSet(KEY,c)}
+(function(){var c=lsGet(KEY);if(!c)return;['svc','regs','hasta','min','max'].forEach(function(k){if(c[k]!=null)$(k).value=c[k]})})();
+function loadNews(file){readTable(file,function(data){if(!data.length){alert('El archivo no tiene filas.');return}
+  map=detect(Object.keys(data[0]),NA);
+  rows=data.map(function(o){var g=function(f){return map[f]?o[map[f]]:''};
+    return{raw:o,t:norm(Object.keys(o).map(function(k){return o[k]}).join(' ')),nom:String(g('nom')),ent:String(g('ent')),desc:String(g('desc')),reg:String(g('reg')),monto:map.monto?toNum(g('monto')):null,fecha:map.fecha?toDate(g('fecha')):null,svc:''}});
+  var b=$('map2');b.textContent='Columnas detectadas: ';Object.keys(NA).forEach(function(f){var s=document.createElement('span');s.className='tag';s.textContent=f+(map[f]?' ← '+map[f]:' (no encontrada)');b.appendChild(s)});
+  renderNews()})}
+function renderNews(){saveCfg();var c=cfg(),sv=list(c.svc),rg=list(c.regs),mn=c.min!==''?+c.min:null,mx=c.max!==''?+c.max:null,ha=c.hasta?new Date(c.hasta+'T23:59:59'):null;
+  nview=rows.filter(function(r){
+    r.svc=sv.filter(function(x){return r.t.indexOf(x)>=0}).join(', ');
+    if(sv.length&&!r.svc)return false;
+    if(rg.length&&!rg.some(function(x){return norm(r.reg).indexOf(x)>=0}))return false;
+    if(mn!=null&&(r.monto==null||r.monto<mn))return false;if(mx!=null&&(r.monto==null||r.monto>mx))return false;
+    if(ha&&(!r.fecha||r.fecha>ha))return false;return true});
+  nview.sort(function(a,b){return cmp(a,b,ns.k,ns.d)});
+  heads($('th2'),NC,NL,ns,renderNews);var tb=$('tb2');tb.textContent='';
+  nview.slice(0,1000).forEach(function(r){var tr=document.createElement('tr');cell(tr,r.nom||'—');cell(tr,r.ent||'—');cell(tr,r.desc||'—');
+    var td=document.createElement('td');r.svc.split(', ').filter(Boolean).forEach(function(s){var t=document.createElement('span');t.className='tag';t.textContent=s;td.appendChild(t)});tr.appendChild(td);
+    cell(tr,fmtM(r.monto));cell(tr,fmtD(r.fecha));tb.appendChild(tr)});
+  $('stats2').textContent=nview.length+' procesos coinciden con mis servicios, de '+rows.length+' cargados'+(nview.length>1000?' (se muestran 1000; el CSV trae todos)':'')+(sv.length?'':'. Escribe tus servicios para filtrar.');}
+var d2=$('drop2'),f2=$('file2');
+d2.onclick=function(){f2.click()};d2.onkeydown=function(e){if(e.key==='Enter'||e.key===' ')f2.click()};
+f2.onchange=function(){if(f2.files[0])loadNews(f2.files[0])};
+['dragenter','dragover'].forEach(function(ev){d2.addEventListener(ev,function(e){e.preventDefault();d2.classList.add('over')})});
+['dragleave','drop'].forEach(function(ev){d2.addEventListener(ev,function(e){e.preventDefault();d2.classList.remove('over')})});
+d2.addEventListener('drop',function(e){if(e.dataTransfer.files[0])loadNews(e.dataTransfer.files[0])});
+['svc','regs','hasta','min','max'].forEach(function(k){$(k).addEventListener('input',function(){if(rows.length)renderNews();else saveCfg()})});
+$('exp2').onclick=function(){csvOut(nview.map(function(r){var o={'Coincide con':r.svc};Object.keys(r.raw).forEach(function(k){o[k]=r.raw[k]});return o}),'procesos-nuevos-filtrados.csv')};
+
+heads($('th2'),NC,NL,ns,renderNews);renderHist();
+})();
+</script>
+</body>
+</html>
