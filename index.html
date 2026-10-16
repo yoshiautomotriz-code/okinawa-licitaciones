@@ -74,7 +74,7 @@ details{margin-top:12px}summary{cursor:pointer;color:var(--ac);font:600 .78rem v
 .pc:hover{border-color:var(--ac);box-shadow:0 0 22px rgba(0,229,255,.18)}
 .pc h3{margin:0;font-size:.98rem;line-height:1.35;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;overflow:hidden;color:#eaf6ff}
 .pc .meta{color:var(--mut);font-size:.82rem}
-.pc .m{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;border-top:1px dashed var(--bd);padding-top:9px}
+.pc .m{display:grid;grid-template-columns:repeat(auto-fit,minmax(96px,1fr));gap:8px;border-top:1px dashed var(--bd);padding-top:9px}
 .pc .m div{font-size:.8rem}.pc .m span{display:block;color:var(--mut);font:.68rem var(--mono);letter-spacing:.06em;text-transform:uppercase}
 .pc .m b{font-family:var(--mono);color:#eaf6ff}
 .pc .act{display:flex;gap:8px;margin-top:auto;flex-wrap:wrap}
@@ -100,6 +100,12 @@ details{margin-top:12px}summary{cursor:pointer;color:var(--ac);font:600 .78rem v
 <div class="drop" id="drop" tabindex="0" role="button"><strong>Carga aquí los procesos</strong> <span class="sub">(.json del Portal de Contrataciones Abiertas, .csv o .xlsx del buscador del SEACE; puedes elegir varios)</span>
   <input id="file" type="file" accept=".json,.csv,.xlsx,.xls" multiple hidden></div>
 <div class="note" id="info">Si en tu repositorio existe un archivo <code>procesos.json</code>, la página lo carga sola al abrirse.</div>
+<section class="card" style="margin-top:14px">
+  <h2>Pegar resultados del portal OECE</h2>
+  <p class="note" style="margin:0 0 8px">1) Entra a <b>Búsqueda</b> en contratacionesabiertas.oece.gob.pe, escribe una palabra (ej. firewall) y deja filtro de año 2026. 2) Presiona <b>Ctrl + A</b> y <b>Ctrl + C</b> en esa página. 3) Pega aquí con <b>Ctrl + V</b> y haz clic en Agregar. Repite con VPN, antivirus, antispam, switch y router: los procesos se van sumando y se guardan en este navegador.</p>
+  <textarea id="paste" style="min-height:90px" placeholder="Pega aquí el texto copiado del portal..."></textarea>
+  <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button class="pri" id="addp">Agregar procesos</button><button id="delp">Borrar procesos pegados</button></div>
+</section>
 
 <section class="card" style="margin-top:14px">
   <div class="srch"><input type="text" id="q" placeholder="Buscar por palabra, entidad o nomenclatura (ej. fortigate, municipalidad, CP-ABR-8)"><button id="clr">Limpiar filtros</button></div>
@@ -148,7 +154,7 @@ function toDate(v){if(v==null||v==='')return null;if(v instanceof Date)return v;
  var s=String(v).trim(),m=s.match(/^(\d{1,2})[\/-](\d{1,2})[\/-](\d{4})/);if(m)return new Date(+m[3],+m[2]-1,+m[1]);
  var d=new Date(s);return isNaN(d)?null:d}
 var fD=function(d){return d?('0'+d.getDate()).slice(-2)+'/'+('0'+(d.getMonth()+1)).slice(-2)+'/'+d.getFullYear():'—'};
-var fM=function(n){return n==null?'No publicado':'S/ '+n.toLocaleString('es-PE',{maximumFractionDigits:0})};
+var fM=function(n,c){return n==null?'No publicado':(c&&c!=='PEN'?c+' ':'S/ ')+n.toLocaleString('es-PE',{maximumFractionDigits:0})};
 function detect(h,A){var m={},used={},hn=h.map(norm);
  Object.keys(A).forEach(function(f){var found=-1;
   A[f].some(function(a){var i=hn.indexOf(a);if(i>=0&&!used[i]){found=i;return true}return false});
@@ -186,6 +192,7 @@ function renderChips(base){var box=$('chips');box.textContent='';
   var b=document.createElement('button');b.className='chp';b.setAttribute('aria-pressed',!!sel[c.id]);b.textContent=c.n;var s=document.createElement('small');s.textContent=n;b.appendChild(s);
   b.onclick=function(){sel[c.id]=!sel[c.id];shown=24;render()};box.appendChild(b)})}
 function days(d){return Math.ceil((d-new Date(new Date().setHours(0,0,0,0)))/86400000)}
+function mets(r){var a=[['Valor',fM(r.monto,r.cur)],['Convocatoria',fD(r.pub)]];if(r.cons)a.push(['Consultas',fD(r.cons)]);if(r.ofe)a.push(['Ofertas',fD(r.ofe)]);return a}
 function card(r){var d=document.createElement('article');d.className='pc';
  var top=document.createElement('div');top.style.cssText='display:flex;flex-wrap:wrap;gap:6px';
  var add=function(txt,cls){var s=document.createElement('span');s.className=cls||'tag';s.textContent=txt;top.appendChild(s)};
@@ -195,9 +202,9 @@ function card(r){var d=document.createElement('article');d.className='pc';
  d.appendChild(top);
  var h=document.createElement('h3');h.textContent=r.desc||r.ref;d.appendChild(h);
  var m=document.createElement('div');m.className='meta';m.textContent='🏛️ '+(r.ent||'—')+(r.reg?' · 📍 '+r.reg:'')+(r.ref?' · '+r.ref:'');d.appendChild(m);
- var g=document.createElement('div');g.className='m';[['Valor',fM(r.monto)],['Consultas',fD(r.cons)],['Ofertas',fD(r.ofe)]].forEach(function(x){var e=document.createElement('div'),a=document.createElement('span'),b=document.createElement('b');a.textContent=x[0];b.textContent=x[1];e.append(a,b);g.appendChild(e)});d.appendChild(g);
+ var g=document.createElement('div');g.className='m';mets(r).forEach(function(x){var e=document.createElement('div'),a=document.createElement('span'),b=document.createElement('b');a.textContent=x[0];b.textContent=x[1];e.append(a,b);g.appendChild(e)});d.appendChild(g);
  var ac=document.createElement('div');ac.className='act';
- if(r.url){var a=document.createElement('a');a.href=r.url;a.target='_blank';a.rel='noopener';a.textContent='Ver ficha →';ac.appendChild(a)}
+ if(r.url){var a=document.createElement('a');a.href=r.url;a.target='_blank';a.rel='noopener';a.textContent=r.pasted?'Ver datos oficiales →':'Ver ficha →';ac.appendChild(a)}
  var w=document.createElement('a');w.target='_blank';w.rel='noopener';w.href='https://wa.me/?text='+encodeURIComponent('Mira este proceso: '+(r.desc||r.ref).slice(0,140)+' ('+r.ref+')');w.textContent='💬 Compartir';ac.appendChild(w);
  var cp=document.createElement('button');cp.textContent='Copiar código';cp.onclick=function(){try{navigator.clipboard.writeText(r.ref);cp.textContent='¡Copiado!';setTimeout(function(){cp.textContent='Copiar código'},1200)}catch(e){}};ac.appendChild(cp);
  d.appendChild(ac);return d}
@@ -230,7 +237,32 @@ dr.addEventListener('drop',function(e){if(e.dataTransfer.files.length)loadFiles(
 $('more').onclick=function(){shown+=24;render()};$('exp').onclick=csvOut;
 $('clr').onclick=function(){$('q').value='';['reg','mon','tip'].forEach(function(i){$(i).value=''});$('vig').checked=false;sel={};shown=24;render()};
 $('rst').onclick=function(){CATS.forEach(function(c){kw[c.id]=c.k});lsSet(KEY,kw);buildKw();compile();tag();render()};
-compile();buildKw();render();
+compile();
+function parsePaste(text){var out=[];
+ String(text).split(/(?=OCID:\s*ocds-)/).forEach(function(b){
+  var oc=b.match(/ocds-[a-z0-9]+-seacev3-[\w-]+/i);if(!oc)return;
+  var no=b.match(/Nomenclatura:\s*(\S+)/),fe=b.match(/Fecha de Convocatoria:\s*(\d{4})-(\d{2})-(\d{2})/);
+  var ent=b.match(/Nomenclatura:\s*\S+\s+([\s\S]*?)\s*\(Comprador\)/);
+  var ds=b.match(/\(Comprador\)\s*([\s\S]*?)\s*\((Bienes|Servicios|Obras|Consultor[^)]*)\)/);
+  if(!ds||!no)return;
+  var rest=b.slice(b.indexOf(ds[0])+ds[0].length),cut=rest.search(/\d[\d,]*\.\d{2}\s*[A-Z]{3}|\*?\s*Monto reservado|Sistema Electr/);
+  var tipo=(cut>=0?rest.slice(0,cut):rest.split('\n').slice(0,2).join(' ')).replace(/\s+/g,' ').trim();
+  var mo=rest.match(/(\d[\d,]*\.\d{2})\s*([A-Z]{3})/);
+  var clean=function(s){return String(s||'').replace(/\s+/g,' ').trim()};
+  out.push({pasted:true,ocid:oc[0],ref:no[1],ent:clean(ent&&ent[1]),desc:clean(ds[1]),obj:ds[2],reg:'',tipo:tipo.length<80?tipo:'',
+   monto:mo?parseFloat(mo[1].replace(/,/g,'')):null,cur:mo?mo[2]:'PEN',pub:fe?new Date(+fe[1],+fe[2]-1,+fe[3]):null,cons:null,ofe:null,
+   url:'https://contratacionesabiertas.oece.gob.pe/api/v1/record/'+oc[0],raw:{proceso:no[1],ocid:oc[0]}});});
+ out.forEach(function(r){r.t=norm(r.desc+' '+r.ent+' '+r.ref+' '+r.obj)});return out}
+
+var PK='okinawa-ops-pasted-v1';
+function savePasted(){lsSet(PK,data.filter(function(r){return r.pasted}))}
+$('addp').onclick=function(){var n=parsePaste($('paste').value);
+ if(!n.length){alert('No encontré procesos en ese texto. Copia toda la página de Búsqueda del portal (Ctrl + A) y vuelve a intentar.');return}
+ n.forEach(function(r){data.push(r)});var antes=data.length;finish();savePasted();$('paste').value='';
+ $('info').textContent='Se leyeron '+n.length+' procesos del texto pegado. Total en la página: '+data.length+'.'};
+$('delp').onclick=function(){if(confirm('¿Borrar los procesos pegados de este navegador?')){data=data.filter(function(r){return!r.pasted});savePasted();finish()}};
+(lsGet(PK)||[]).forEach(function(r){r.pub=r.pub?new Date(r.pub):null;r.cons=null;r.ofe=null;data.push(r)});
+tag();fillSel();buildKw();render();
 try{fetch('procesos.json').then(function(r){return r.ok?r.json():null}).then(function(j){if(j){var n=fromJson(j);finish();$('info').textContent='Cargados automáticamente desde procesos.json ('+n+' procesos).'}}).catch(function(){})}catch(e){}
 })();
 </script>
