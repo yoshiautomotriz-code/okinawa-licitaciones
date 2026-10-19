@@ -283,7 +283,7 @@ function parsePaste(text){var out=[];
   var clean=function(s){return String(s||'').replace(/\s+/g,' ').trim()};
   out.push({pasted:true,ocid:oc[0],ref:no[1],ent:clean(ent&&ent[1]),desc:clean(ds[1]),obj:ds[2],reg:'',tipo:tipo.length<80?tipo:'',
    monto:mo?parseFloat(mo[1].replace(/,/g,'')):null,cur:mo?mo[2]:'PEN',pub:fe?new Date(+fe[1],+fe[2]-1,+fe[3]):null,cons:null,ofe:null,
-  url:'https://contratacionesabiertas.oece.gob.pe/proceso/'+oc[0],raw:{proceso:no[1],ocid:oc[0]}});});
+url:'https://contratacionesabiertas.oece.gob.pe/contratacion/'+oc[0],raw:{proceso:no[1],ocid:oc[0]}});});
 out.forEach(function(r){r.t=norm(r.desc+' '+r.ent+' '+r.ref+' '+r.obj)});return out}
 
 // --- INICIO DEL MOTOR DE FASES (OPCIÓN 1) ---
