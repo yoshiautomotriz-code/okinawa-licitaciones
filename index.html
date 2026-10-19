@@ -82,6 +82,16 @@ details{margin-top:12px}summary{cursor:pointer;color:var(--ac);font:600 .78rem v
 .bd{font:.7rem var(--mono);padding:1px 8px;border-radius:6px;border:1px solid var(--bd);color:var(--mut)}
 .bd.new{color:var(--ok);border-color:rgba(34,255,154,.5);background:var(--oks)}.bd.warn{color:#ffd166;border-color:rgba(255,209,102,.5)}.bd.off{color:#ff7a90;border-color:rgba(255,122,144,.5)}
 .empty{padding:34px;text-align:center;color:var(--mut)}
+
+/* --- INICIO COLORES DE FASES --- */
+.ph{font-weight:600}
+.ph-consultas{color:#00e5ff;border-color:rgba(0,229,255,.5);background:var(--acs)}
+.ph-ofertas{color:#ffd166;border-color:rgba(255,209,102,.5)}
+.ph-buenapro{color:#ff9f43;border-color:rgba(255,159,67,.5)}
+.ph-contrato{color:var(--ok);border-color:rgba(34,255,154,.5);background:var(--oks)}
+.ph-cerrado{color:#ff7a90;border-color:rgba(255,122,144,.5)}
+.ph-convocado,.ph-plan{color:var(--mut)}
+/* --- FIN COLORES DE FASES --- */
 </style>
 </head>
 <body>
@@ -206,7 +216,29 @@ function card(r){var d=document.createElement('article');d.className='pc';
  var ac=document.createElement('div');ac.className='act';
  if(r.url){var a=document.createElement('a');a.href=r.url;a.target='_blank';a.rel='noopener';a.textContent=r.pasted?'Ver datos oficiales →':'Ver ficha →';ac.appendChild(a)}
  var w=document.createElement('a');w.target='_blank';w.rel='noopener';w.href='https://wa.me/?text='+encodeURIComponent('Mira este proceso: '+(r.desc||r.ref).slice(0,140)+' ('+r.ref+')');w.textContent='💬 Compartir';ac.appendChild(w);
- var cp=document.createElement('button');cp.textContent='Copiar código';cp.onclick=function(){try{navigator.clipboard.writeText(r.ref);cp.textContent='¡Copiado!';setTimeout(function(){cp.textContent='Copiar código'},1200)}catch(e){}};ac.appendChild(cp);
+var cp=document.createElement('button');cp.textContent='Copiar código';cp.onclick=function(){try{navigator.clipboard.writeText(r.ref);cp.textContent='¡Copiado!';setTimeout(function(){cp.textContent='Copiar código'},1200)}catch(e){}};ac.appendChild(cp);
+
+ // --- INICIO DEL BOTÓN DE FASES ---
+ if(r.ocid){
+  var bu=document.createElement('button');
+  bu.textContent='↻ Fase';
+  if(typeof PH !== 'undefined' && PH[r.ocid]){
+      add(PH[r.ocid].fase, 'bd ph ph-' + PH[r.ocid].k);
+  }
+  bu.onclick=function(){
+   bu.textContent='…';
+   bu.disabled=true;
+   upd(r).then(function(){
+    render(); 
+   }).catch(function(err){
+    bu.textContent='Error';
+    bu.disabled=false;
+   });
+  };
+  ac.appendChild(bu);
+ }
+ // --- FIN DEL BOTÓN DE FASES ---
+
  d.appendChild(ac);return d}
 function render(){
  var base=data.filter(function(r){return r.cats.length&&passBase(r)});renderChips(base);
@@ -252,7 +284,47 @@ function parsePaste(text){var out=[];
   out.push({pasted:true,ocid:oc[0],ref:no[1],ent:clean(ent&&ent[1]),desc:clean(ds[1]),obj:ds[2],reg:'',tipo:tipo.length<80?tipo:'',
    monto:mo?parseFloat(mo[1].replace(/,/g,'')):null,cur:mo?mo[2]:'PEN',pub:fe?new Date(+fe[1],+fe[2]-1,+fe[3]):null,cons:null,ofe:null,
    url:'https://contratacionesabiertas.oece.gob.pe/api/v1/record/'+oc[0],raw:{proceso:no[1],ocid:oc[0]}});});
- out.forEach(function(r){r.t=norm(r.desc+' '+r.ent+' '+r.ref+' '+r.obj)});return out}
+out.forEach(function(r){r.t=norm(r.desc+' '+r.ent+' '+r.ref+' '+r.obj)});return out}
+
+// --- INICIO DEL MOTOR DE FASES (OPCIÓN 1) ---
+var PH = lsGet('okinawa-ops-fase-v1') || {};
+async function upd(r) {
+  if (!r.ocid) return Promise.reject("Sin OCID");
+  try {
+    var urlOficial = 'https://contratacionesabiertas.oece.gob.pe/api/v1/record/' + r.ocid;
+    var proxyUrl = 'https://corsproxy.io/?' + encodeURIComponent(urlOficial);
+    var res = await fetch(proxyUrl);
+    if (!res.ok) throw new Error("Error de red o proxy bloqueado");
+    var data = await res.json();
+    var rel = data.compiledRelease || (data.releases && data.releases[0]);
+    if (!rel || !rel.tender) throw new Error("Datos incompletos");
+    var t = rel.tender;
+    var now = new Date();
+    now.setHours(0,0,0,0);
+    var faseClave = 'sin', faseTexto = 'Desconocida';
+    var fCons = t.enquiryPeriod && t.enquiryPeriod.endDate ? new Date(t.enquiryPeriod.endDate) : null;
+    var fOfe = t.tenderPeriod && t.tenderPeriod.endDate ? new Date(t.tenderPeriod.endDate) : null;
+    if (t.status === 'cancelled' || t.status === 'unsuccessful') {
+        faseClave = 'cerrado'; faseTexto = 'Desierto/Cancelado';
+    } else if (rel.awards && rel.awards.length > 0) {
+        faseClave = 'buenapro'; faseTexto = 'Buena Pro';
+    } else if (fOfe && now > fOfe) {
+        faseClave = 'ofertas'; faseTexto = 'En evaluación';
+    } else if (fCons && now <= fCons) {
+        faseClave = 'consultas'; faseTexto = 'Consultas y Obs.';
+    } else if (fOfe && now <= fOfe) {
+        faseClave = 'open'; faseTexto = 'Ofertas abiertas';
+    } else {
+        faseClave = 'convocado'; faseTexto = 'Convocado';
+    }
+    PH[r.ocid] = { k: faseClave, fase: faseTexto, upd: Date.now() };
+    lsSet('okinawa-ops-fase-v1', PH);
+    return faseTexto;
+  } catch (err) {
+    return Promise.reject(err);
+  }
+}
+// --- FIN DEL MOTOR DE FASES ---
 
 var PK='okinawa-ops-pasted-v1';
 function savePasted(){lsSet(PK,data.filter(function(r){return r.pasted}))}
