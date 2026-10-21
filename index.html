@@ -335,7 +335,7 @@ $('addp').onclick=function(){var n=parsePaste($('paste').value);
 $('delp').onclick=function(){if(confirm('¿Borrar los procesos pegados de este navegador?')){data=data.filter(function(r){return!r.pasted});savePasted();finish()}};
 (lsGet(PK)||[]).forEach(function(r){r.pub=r.pub?new Date(r.pub):null;r.cons=null;r.ofe=null;data.push(r)});
 tag();fillSel();buildKw();render();
-try{fetch('registros_contrataciones_2026.json').then(function(r){return r.ok?r.json():null}).then(function(j){if(j){var n=fromJson(j);finish();$('info').textContent='Cargados automáticamente desde procesos.json ('+n+' procesos).'}}).catch(function(){})}catch(e){}
+try{fetch('registros_contrataciones_2026.json').then(function(r){return r.ok?r.json():null}).then(function(j){if(j){var n=fromJson(j);finish();$('info').textContent='Cargados automáticamente desde el repositorio' ('+n+' procesos).'}}).catch(function(){})}catch(e){}
 })();
 </script>
 <script>
