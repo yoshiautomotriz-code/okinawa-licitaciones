@@ -1,0 +1,37 @@
+name: Actualizador Automatico de Licitaciones OECE
+
+on:
+  schedule:
+    # Se ejecuta todos los días a las 6:00 AM (hora Perú)
+    - cron: '0 11 * * *'
+  workflow_dispatch:
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Descargar código del repositorio
+      uses: actions/checkout@v3
+
+    - name: Configurar entorno de Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'
+
+    - name: Instalar librerías
+      run: |
+        python -m pip install --upgrade pip
+        pip install requests beautifulsoup4 pandas openpyxl
+
+    - name: Ejecutar Extractor de Contrataciones OECE
+      run: |
+        python "GENERA JSON CON DUPLICIDAD.py"
+
+    - name: Guardar y publicar cambios en GitHub
+      run: |
+        git config --global user.name "github-actions[bot]"
+        git config --global user.email "github-actions[bot]"
+        git add registros_contrataciones_2026.json
+        git commit -m "Automatización: Licitaciones OECE actualizadas" || exit 0
+        git push
