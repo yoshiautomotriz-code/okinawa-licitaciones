@@ -2,7 +2,7 @@ name: Actualizador Automatico de Licitaciones OECE
 
 on:
   schedule:
-    # Se ejecuta todos los días a las 6:00 AM (hora Perú)
+    # Se ejecuta todos los días a las 6:00 AM (hora Perú)000000
     - cron: '0 11 * * *'
   workflow_dispatch:
 
