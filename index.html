@@ -270,8 +270,36 @@ $('more').onclick=function(){shown+=24;render()};$('exp').onclick=csvOut;
 $('clr').onclick=function(){$('q').value='';['reg','mon','tip'].forEach(function(i){$(i).value=''});$('vig').checked=false;sel={};shown=24;render()};
 $('rst').onclick=function(){CATS.forEach(function(c){kw[c.id]=c.k});lsSet(KEY,kw);buildKw();compile();tag();render()};
 compile();
-function parsePaste(text){var out=[];
- String(text).split(/(?=OCID:\s*ocds-)/).forEach(function(b){
+function parsePaste(text){
+  var out = [];
+  var bloques = String(text).split(/(?=OCID:|ocds-)/i);
+  bloques.forEach(function(b){
+    var oc = b.match(/ocds-[a-z0-9]+-seacev3-[\w-]+/i);
+    if (!oc) return;
+    var no = b.match(/(?:Nomenclatura:\s*|N°\s*)(\S+)/i) || [null, oc[0]];
+    var ent = b.match(/Comprador\):\s*([\s\S]*?)\(/i) || b.match(/Entidad:\s*([^\n]+)/i);
+    var ds = b.match(/\)\s*([\s\S]*?)\s*\(/) || [null, "Proceso agregado manualmente"];
+    var clean = function(s){return String(s||'').replace(/\s+/g,' ').trim()};
+    out.push({
+      pasted: true,
+      ocid: oc[0],
+      ref: clean(no[1]),
+      ent: clean(ent ? ent[1] : 'Entidad por verificar'),
+      desc: clean(ds[1]),
+      reg: '',
+      tipo: 'Agregado manualmente',
+      monto: null,
+      cur: 'PEN',
+      pub: new Date(),
+      cons: null,
+      ofe: null,
+      url: 'https://contratacionesabiertas.oece.gob.pe/contratacion/' + oc[0],
+      raw: { proceso: no[1], ocid: oc[0] }
+    });
+  });
+  out.forEach(function(r){ r.t = norm(r.desc + ' ' + r.ent + ' ' + r.ref); });
+  return out;
+}
   var oc=b.match(/ocds-[a-z0-9]+-seacev3-[\w-]+/i);if(!oc)return;
   var no=b.match(/Nomenclatura:\s*(\S+)/),fe=b.match(/Fecha de Convocatoria:\s*(\d{4})-(\d{2})-(\d{2})/);
   var ent=b.match(/Nomenclatura:\s*\S+\s+([\s\S]*?)\s*\(Comprador\)/);
